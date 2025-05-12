@@ -1,0 +1,19 @@
+apiVersion: scheduling.mygroup.io/v1
+kind: AppGroup
+metadata:
+  name: simple-app
+spec:
+  workloads:
+    - name: frontend
+      selector: app=frontend
+      weight: 2
+      dependencies:
+        - name: backend
+          metrics:
+            latency: 0.7
+            bandwidth: 0.2
+            lossrate: 0.1
+    - name: backend
+      selector: app=backend
+      weight: 1
+      dependencies: []

@@ -1,0 +1,14 @@
+NAMESPACE   NAME                            READY   STATUS    RESTARTS   AGE     IP               NODE                              NOMINATED NODE   READINESS GATES
+default     auth-dep-59c79db458-2wrh4       1/1     Running   0          3m13s   10.244.153.180   sp25-cs525-1402.cs.illinois.edu   <none>           <none>
+default     cart-dep-59b6c94ff4-dfhxz       1/1     Running   0          3m13s   10.244.92.74     sp25-cs525-1404.cs.illinois.edu   <none>           <none>
+default     catalog-dep-7c7f795bb8-cmsd4    1/1     Running   0          3m13s   10.244.205.138   sp25-cs525-1406.cs.illinois.edu   <none>           <none>
+default     catalog-dep-7c7f795bb8-nzt4x    1/1     Running   0          3m13s   10.244.153.181   sp25-cs525-1402.cs.illinois.edu   <none>           <none>
+default     checkout-dep-56d6f55b7c-9vlr5   1/1     Running   0          3m13s   10.244.45.157    sp25-cs525-1403.cs.illinois.edu   <none>           <none>
+default     checkout-dep-56d6f55b7c-ldjzk   1/1     Running   0          3m13s   10.244.89.201    sp25-cs525-1405.cs.illinois.edu   <none>           <none>
+default     frontend-dep-865ccb9d5f-qtbv7   1/1     Running   0          3m13s   10.244.205.139   sp25-cs525-1406.cs.illinois.edu   <none>           <none>
+default     frontend-dep-865ccb9d5f-rwnlb   1/1     Running   0          3m13s   10.244.92.75     sp25-cs525-1404.cs.illinois.edu   <none>           <none>
+default     payment-dep-6f69567c6b-kvgtk    1/1     Running   0          3m13s   10.244.205.140   sp25-cs525-1406.cs.illinois.edu   <none>           <none>
+default     recommend-dep-6dfb88d75-29htg   1/1     Running   0          3m13s   10.244.89.202    sp25-cs525-1405.cs.illinois.edu   <none>           <none>
+default     search-dep-6ddbc7b458-52629     1/1     Running   0          3m12s   10.244.45.158    sp25-cs525-1403.cs.illinois.edu   <none>           <none>
+default     search-dep-6ddbc7b458-gmxxw     1/1     Running   0          3m13s   10.244.89.203    sp25-cs525-1405.cs.illinois.edu   <none>           <none>
+default     user-dep-7586899dbb-ssj5b       1/1     Running   0          3m12s   10.244.205.141   sp25-cs525-1406.cs.illinois.edu   <none>           <none>

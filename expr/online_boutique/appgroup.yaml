@@ -1,0 +1,90 @@
+apiVersion: scheduling.mygroup.io/v1
+kind: AppGroup
+metadata:
+  name: boutique
+spec:
+  workloads:
+    - name: frontend
+      selector: app=frontend
+      weight: 1.0
+      dependencies:
+        - name: recommendationservice
+          metrics: { latency: 0.6, bandwidth: 0.3, lossrate: 0.1 }
+        - name: productcatalogservice
+          metrics: { latency: 0.7, bandwidth: 0.2, lossrate: 0.1 }
+        - name: checkoutservice
+          metrics: { latency: 0.6, bandwidth: 0.3, lossrate: 0.1 }
+        - name: currencyservice
+          metrics: { latency: 0.4, bandwidth: 0.4, lossrate: 0.2 }
+        - name: cartservice
+          metrics: { latency: 0.5, bandwidth: 0.4, lossrate: 0.1 }
+        - name: shippingservice
+          metrics: { latency: 0.4, bandwidth: 0.3, lossrate: 0.3 }
+        - name: adservice
+          metrics: { latency: 0.7, bandwidth: 0.2, lossrate: 0.1 }
+
+    - name: recommendationservice
+      selector: app=recommendationservice
+      weight: 0.8
+      dependencies:
+        - name: productcatalogservice
+          metrics: { latency: 0.7, bandwidth: 0.2, lossrate: 0.1 }
+
+    - name: checkoutservice
+      selector: app=checkoutservice
+      weight: 0.9
+      dependencies:
+        - name: paymentservice
+          metrics: { latency: 0.4, bandwidth: 0.3, lossrate: 0.3 }
+        - name: emailservice
+          metrics: { latency: 0.4, bandwidth: 0.3, lossrate: 0.3 }
+        - name: shippingservice
+          metrics: { latency: 0.5, bandwidth: 0.3, lossrate: 0.2 }
+        - name: currencyservice
+          metrics: { latency: 0.4, bandwidth: 0.3, lossrate: 0.2 }
+        - name: cartservice
+          metrics: { latency: 0.4, bandwidth: 0.3, lossrate: 0.2 }
+        - name: productcatalogservice
+          metrics: { latency: 0.7, bandwidth: 0.2, lossrate: 0.1 }
+
+    - name: cartservice
+      selector: app=cartservice
+      weight: 0.8
+      dependencies: 
+        - name: redis-cart
+          metrics: { latency: 0.5, bandwidth: 0.4, lossrate: 0.1 }
+
+    - name: adservice
+      selector: app=adservice
+      weight: 0.4
+      dependencies: []
+
+    - name: productcatalogservice
+      selector: app=productcatalogservice
+      weight: 0.6
+      dependencies: []
+
+    - name: currencyservice
+      selector: app=currencyservice
+      weight: 0.8
+      dependencies: []
+
+    - name: paymentservice
+      selector: app=paymentservice
+      weight: 0.8
+      dependencies: []
+
+    - name: shippingservice
+      selector: app=shippingservice
+      weight: 0.8
+      dependencies: []
+
+    - name: emailservice
+      selector: app=emailservice
+      weight: 0.7
+      dependencies: []
+
+    - name: redis-cart
+      selector: app=redis-cart
+      weight: 0.7
+      dependencies: []

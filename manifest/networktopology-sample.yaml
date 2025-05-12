@@ -1,0 +1,11 @@
+apiVersion: scheduling.mygroup.io/v1
+kind: NetworkTopology
+metadata:
+  name: cluster-network
+spec:
+  latency: {}
+  bandwidth: {}
+  lossrate: {}
+  maxLatency: 0.01
+  maxBandwidth: 0.01
+  maxLossrate: 0.01

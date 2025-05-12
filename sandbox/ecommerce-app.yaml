@@ -1,0 +1,100 @@
+apiVersion: scheduling.mygroup.io/v1
+kind: AppGroup
+metadata:
+  name: ecommerce-app
+spec:
+  workloads:
+    - name: redis-cart
+      selector: app=redis-cart
+      weight: 0.3
+      dependencies: []
+
+    - name: cartservice
+      selector: app=cartservice
+      weight: 0.6
+      dependencies:
+        - name: redis-cart
+          metrics:
+            latency: 1.0
+            bandwidth: 0.8
+
+    - name: recommendationservice
+      selector: app=recommendationservice
+      weight: 0.4
+      dependencies: []
+
+    - name: productcatalogservice
+      selector: app=productcatalogservice
+      weight: 0.5
+      dependencies:
+        - name: recommendationservice
+          metrics:
+            latency: 0.7
+            bandwidth: 0.9
+
+    - name: currencyservice
+      selector: app=currencyservice
+      weight: 0.4
+      dependencies: []
+
+    - name: paymentservice
+      selector: app=paymentservice
+      weight: 0.5
+      dependencies: []
+
+    - name: shippingservice
+      selector: app=shippingservice
+      weight: 0.5
+      dependencies: []
+
+    - name: emailservice
+      selector: app=emailservice
+      weight: 0.3
+      dependencies: []
+
+    - name: checkoutservice
+      selector: app=checkoutservice
+      weight: 0.9
+      dependencies:
+        - name: cartservice
+          metrics:
+            latency: 1.0
+            bandwidth: 0.7
+        - name: productcatalogservice
+          metrics:
+            latency: 0.9
+            bandwidth: 0.6
+        - name: currencyservice
+          metrics:
+            latency: 0.8
+        - name: paymentservice
+          metrics:
+            latency: 1.0
+        - name: shippingservice
+          metrics:
+            latency: 0.7
+        - name: emailservice
+          metrics:
+            latency: 0.6
+
+    - name: adservice
+      selector: app=adservice
+      weight: 0.4
+      dependencies: []
+
+    - name: frontend
+      selector: app=frontend
+      weight: 1.0
+      dependencies:
+        - name: checkoutservice
+          metrics:
+            latency: 1.0
+        - name: cartservice
+          metrics:
+            latency: 0.8
+        - name: productcatalogservice
+          metrics:
+            latency: 0.7
+        - name: adservice
+          metrics:
+            latency: 0.5

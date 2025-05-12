@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      appgroup: simple-app
+  template:
+    metadata:
+      labels:
+        app: frontend
+        appgroup: simple-app
+    spec:
+      schedulerName: my-scheduler
+      containers:
+      - name: frontend
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      appgroup: simple-app
+  template:
+    metadata:
+      labels:
+        app: backend
+        appgroup: simple-app
+    spec:
+      schedulerName: my-scheduler
+      containers:
+      - name: backend
+        image: nginx:1.21
+        ports:
+        - containerPort: 80

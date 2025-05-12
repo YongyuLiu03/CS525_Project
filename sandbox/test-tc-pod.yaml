@@ -1,0 +1,79 @@
+# pod-a.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-a
+  labels:
+    app: pod-a
+spec:
+  containers:
+  - name: tester
+    image: busybox
+    command: ["sleep", "3600"]
+  nodeSelector:
+    kubernetes.io/hostname: sp25-cs525-1403.cs.illinois.edu
+  restartPolicy: Always
+---
+# pod-b.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-b
+  labels:
+    app: pod-b
+spec:
+  containers:
+  - name: tester
+    image: busybox
+    command: ["sleep", "3600"]
+  nodeSelector:
+    kubernetes.io/hostname: sp25-cs525-1406.cs.illinois.edu
+  restartPolicy: Always
+---
+# pod-c.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-c
+  labels:
+    app: pod-c  
+spec:
+  containers:
+  - name: tester
+    image: busybox
+    command: ["sleep", "3600"]
+  nodeSelector:
+    kubernetes.io/hostname: sp25-cs525-1407.cs.illinois.edu
+  restartPolicy: Always
+---
+  # pod-d.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-d
+  labels:
+    app: pod-d
+spec:
+  containers:
+  - name: tester
+    image: busybox
+    command: ["sleep", "3600"]
+  nodeSelector:
+    kubernetes.io/hostname: sp25-cs525-1412.cs.illinois.edu
+  restartPolicy: Always
+---
+  # pod-e.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-e
+  labels:
+    app: pod-e
+spec:
+  containers:
+  - name: tester
+    image: busybox
+    command: ["sleep", "3600"]
+  nodeSelector:
+    kubernetes.io/hostname: sp25-cs525-1417.cs.illinois.edu
+  restartPolicy: Always

@@ -1,0 +1,266 @@
+# ecommerce-app deployments (dummy containers for test)
+# All images use busybox to simulate service startup + sleep
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cart
+  namespace: default
+  labels:
+    app: redis-cart
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-cart
+  template:
+    metadata:
+      labels:
+        app: redis-cart
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: redis-cart
+          image: busybox
+          command: ["sh", "-c", "echo redis-cart started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cartservice
+  namespace: default
+  labels:
+    app: cartservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cartservice
+  template:
+    metadata:
+      labels:
+        app: cartservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: cartservice
+          image: busybox
+          command: ["sh", "-c", "echo cartservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: default
+  labels:
+    app: frontend
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: frontend
+          image: busybox
+          command: ["sh", "-c", "echo frontend started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendationservice
+  namespace: default
+  labels:
+    app: recommendationservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recommendationservice
+  template:
+    metadata:
+      labels:
+        app: recommendationservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: recommendationservice
+          image: busybox
+          command: ["sh", "-c", "echo recommendationservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
+  namespace: default
+  labels:
+    app: productcatalogservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: productcatalogservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: productcatalogservice
+          image: busybox
+          command: ["sh", "-c", "echo productcatalogservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyservice
+  namespace: default
+  labels:
+    app: currencyservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    metadata:
+      labels:
+        app: currencyservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: currencyservice
+          image: busybox
+          command: ["sh", "-c", "echo currencyservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  namespace: default
+  labels:
+    app: paymentservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: paymentservice
+          image: busybox
+          command: ["sh", "-c", "echo paymentservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shippingservice
+  namespace: default
+  labels:
+    app: shippingservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shippingservice
+  template:
+    metadata:
+      labels:
+        app: shippingservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: shippingservice
+          image: busybox
+          command: ["sh", "-c", "echo shippingservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emailservice
+  namespace: default
+  labels:
+    app: emailservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emailservice
+  template:
+    metadata:
+      labels:
+        app: emailservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: emailservice
+          image: busybox
+          command: ["sh", "-c", "echo emailservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkoutservice
+  namespace: default
+  labels:
+    app: checkoutservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkoutservice
+  template:
+    metadata:
+      labels:
+        app: checkoutservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: checkoutservice
+          image: busybox
+          command: ["sh", "-c", "echo checkoutservice started && sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adservice
+  namespace: default
+  labels:
+    app: adservice
+    appgroup: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adservice
+  template:
+    metadata:
+      labels:
+        app: adservice
+        appgroup: ecommerce-app
+    spec:
+      containers:
+        - name: adservice
+          image: busybox
+          command: ["sh", "-c", "echo adservice started && sleep 3600"]

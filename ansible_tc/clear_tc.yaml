@@ -1,0 +1,8 @@
+- name: Clear TC settings on all nodes
+  hosts: all
+  become: yes
+  tasks:
+    - name: Clear tc qdisc rules
+      shell: tc qdisc del dev ens33 root || true
+
+      

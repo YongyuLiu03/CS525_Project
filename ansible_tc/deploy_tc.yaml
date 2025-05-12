@@ -1,0 +1,13 @@
+- name: Deploy TC scripts to configure network topology
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Copy tc script
+      copy:
+        src: "tc_zone/tc_{{ group_names[0] }}.sh"
+        dest: /tmp/tc_config.sh
+        mode: '0755'
+
+    - name: Run tc script
+      shell: /tmp/tc_config.sh

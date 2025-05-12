@@ -1,0 +1,3 @@
+Analyzing network-aware scheduler placement...
+{'auth': 'sp25-cs525-1402.cs.illinois.edu', 'cart': 'sp25-cs525-1404.cs.illinois.edu', 'catalog': 'sp25-cs525-1402.cs.illinois.edu', 'checkout': 'sp25-cs525-1405.cs.illinois.edu', 'frontend': 'sp25-cs525-1404.cs.illinois.edu', 'payment': 'sp25-cs525-1406.cs.illinois.edu', 'recommend': 'sp25-cs525-1405.cs.illinois.edu', 'search': 'sp25-cs525-1405.cs.illinois.edu', 'user': 'sp25-cs525-1406.cs.illinois.edu'}
+Network-aware scheduler total communication cost: 3.974
