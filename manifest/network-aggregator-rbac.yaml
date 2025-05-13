@@ -1,0 +1,22 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: networktopology-writer
+rules:
+  - apiGroups: ["scheduling.mygroup.io"]
+    resources: ["networktopologies"]
+    verbs: ["get", "list", "watch", "patch", "update"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: networktopology-writer-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: networktopology-writer
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: kube-system

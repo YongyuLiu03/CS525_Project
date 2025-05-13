@@ -1,0 +1,92 @@
+apiVersion: scheduling.mygroup.io/v1
+kind: AppGroup
+metadata:
+  name: medium-microservice-app
+spec:
+  workloads:
+  - name: frontend
+    selector: app=frontend
+    weight: 1.0
+    dependencies:
+      - name: search
+        metrics:
+          latency: 0.7
+          bandwidth: 0.2
+          lossrate: 0.1
+      - name: recommend
+        metrics:
+          latency: 0.6
+          bandwidth: 0.3
+          lossrate: 0.1
+      - name: checkout
+        metrics:
+          latency: 0.5
+          bandwidth: 0.3
+          lossrate: 0.2
+  - name: search
+    selector: app=search
+    weight: 0.9
+    dependencies:
+      - name: catalog
+        metrics:
+          latency: 0.2
+          bandwidth: 0.7
+          lossrate: 0.1
+      - name: auth
+        metrics:
+          latency: 0.3
+          bandwidth: 0.6
+          lossrate: 0.1
+  - name: recommend
+    selector: app=recommend
+    weight: 0.6
+    dependencies:
+      - name: catalog
+        metrics:
+          latency: 0.4
+          bandwidth: 0.5
+          lossrate: 0.1
+      - name: user
+        metrics:
+          latency: 0.5
+          bandwidth: 0.4
+          lossrate: 0.1
+  - name: checkout
+    selector: app=checkout
+    weight: 0.8
+    dependencies:
+      - name: cart
+        metrics:
+          latency: 0.5
+          bandwidth: 0.3
+          lossrate: 0.2
+      - name: payment
+        metrics:
+          latency: 0.4
+          bandwidth: 0.2
+          lossrate: 0.4
+      - name: user
+        metrics:
+          latency: 0.6
+          bandwidth: 0.2
+          lossrate: 0.2
+  - name: auth
+    selector: app=auth
+    weight: 0.4
+    dependencies: []
+  - name: catalog
+    selector: app=catalog
+    weight: 0.5
+    dependencies: []
+  - name: user
+    selector: app=user
+    weight: 0.5
+    dependencies: []
+  - name: cart
+    selector: app=cart
+    weight: 0.3
+    dependencies: []
+  - name: payment
+    selector: app=payment
+    weight: 0.4
+    dependencies: []

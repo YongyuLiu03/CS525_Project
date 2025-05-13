@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: network-probe-agent
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: network-probe-agent
+  template:
+    metadata:
+      labels:
+        app: network-probe-agent
+    spec:
+      containers:
+        - name: probe
+          image: yongyuliu03/probe-agent:v8
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+      restartPolicy: Always
