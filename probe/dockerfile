@@ -1,0 +1,8 @@
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y iputils-ping iperf3 && \
+    pip install requests
+
+COPY probe.py /opt/probe.py
+
+CMD ["python3", "/opt/probe.py"]
