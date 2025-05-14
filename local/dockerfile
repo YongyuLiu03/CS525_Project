@@ -1,0 +1,5 @@
+# Dockerfile
+FROM --platform=linux/amd64 python:3.9-slim
+RUN pip install flask kubernetes
+COPY app.py /app.py
+CMD ["python3", "/app.py"]

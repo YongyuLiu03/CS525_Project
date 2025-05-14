@@ -1,0 +1,278 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: frontend
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do wget --timeout=1 -qO- http://search:8080 || true && wget
+          --timeout=1 -qO- http://recommend:8080 || true && wget --timeout=1 -qO-
+          http://checkout:8080 || true; sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: search
+  template:
+    metadata:
+      labels:
+        app: search
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: search
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do wget --timeout=1 -qO- http://catalog:8080 || true && wget
+          --timeout=1 -qO- http://catalog:8080 || true && wget --timeout=1 -qO- http://catalog:8080
+          || true && wget --timeout=1 -qO- http://auth:8080 || true && wget --timeout=1
+          -qO- http://auth:8080 || true; sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommend-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recommend
+  template:
+    metadata:
+      labels:
+        app: recommend
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: recommend
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do wget --timeout=1 -qO- http://catalog:8080 || true && wget
+          --timeout=1 -qO- http://catalog:8080 || true && wget --timeout=1 -qO- http://user:8080
+          || true && wget --timeout=1 -qO- http://user:8080 || true; sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: checkout
+  template:
+    metadata:
+      labels:
+        app: checkout
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: checkout
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do wget --timeout=1 -qO- http://cart:8080 || true && wget --timeout=1
+          -qO- http://payment:8080 || true && wget --timeout=1 -qO- http://user:8080
+          || true && wget --timeout=1 -qO- http://user:8080 || true; sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: auth
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: catalog
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: user
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: cart
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+        appgroup: medium-microservice-app
+    spec:
+      containers:
+      - name: payment
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do sleep 5; done
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+      restartPolicy: Always
+      schedulerName: custom-scheduler

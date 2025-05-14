@@ -1,0 +1,13 @@
+[yl201@sp25-cs525-1401 ~]$ kubectl get pods -o custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
+NAME                                     NODE
+adservice-79f6b8d4c6-h8s6z               sp25-cs525-1404.cs.illinois.edu
+cartservice-768ccfd989-n2xv7             sp25-cs525-1405.cs.illinois.edu
+checkoutservice-74dcc978d4-rk6z5         sp25-cs525-1416.cs.illinois.edu
+currencyservice-7bf97f6db4-87hn7         sp25-cs525-1415.cs.illinois.edu
+emailservice-cbd4bb846-bkkck             sp25-cs525-1413.cs.illinois.edu
+frontend-75558d47fc-cqlmq                sp25-cs525-1406.cs.illinois.edu
+paymentservice-6797d5b7cd-bgnmd          sp25-cs525-1414.cs.illinois.edu
+productcatalogservice-77d5545c66-8bgs2   sp25-cs525-1403.cs.illinois.edu
+recommendationservice-6698655bdb-g9mmb   sp25-cs525-1405.cs.illinois.edu
+redis-cart-57dc9554bf-8qztw              sp25-cs525-1406.cs.illinois.edu
+shippingservice-b9547fdf8-ldbbx          sp25-cs525-1412.cs.illinois.edu

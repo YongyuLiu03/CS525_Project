@@ -1,0 +1,19 @@
+auth 1402
+cart 1404
+catalog-d 1406
+catalog-d 1402
+checkout- 1403
+checkout- 1405
+frontend- 1406
+frontend- 1404
+payment-d 1406
+recommend 1405
+search-de 1403
+search-de 1405
+user-dep- 1406
+
+1402 auth catalog
+1403 checkout search
+1404 frontend cart
+1405 checkout recommend search
+1406 frontend catalog payment user
