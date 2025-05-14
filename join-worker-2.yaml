@@ -1,0 +1,68 @@
+
+- name: Join new worker nodes to Kubernetes cluster after install containerd
+  hosts: new_workers
+  become: true
+
+  tasks:
+    - name: Verify containerd is active
+      systemd:
+        name: containerd
+      register: containerd_status
+
+    - name: Print containerd status
+      debug:
+        var: containerd_status.status.ActiveState
+      
+    - name: Stop firewalld
+      systemd:
+        name: firewalld
+        state: stopped
+
+    - name: Disable firewalld at boot
+      systemd:
+        name: firewalld
+        enabled: no
+
+    - name: Mask firewalld to prevent any restart
+      command: systemctl mask firewalld
+
+    # - name: Open Kubernetes ports in firewall
+    #   shell: |
+    #     firewall-cmd --zone=public --permanent --add-port=6443/tcp
+    #     firewall-cmd --zone=public --permanent --add-port=2379-2380/tcp
+    #     firewall-cmd --zone=public --permanent --add-port=10250/tcp
+    #     firewall-cmd --zone=public --permanent --add-port=10251/tcp
+    #     firewall-cmd --zone=public --permanent --add-port=10252/tcp
+    #     firewall-cmd --zone=public --permanent --add-port=10255/tcp
+    #     firewall-cmd --zone=public --permanent --add-port=5473/tcp
+
+    # - name: Reload firewall
+    #   command: firewall-cmd --reload
+
+    - name: Add Kubernetes repo
+      copy:
+        dest: /etc/yum.repos.d/kubernetes.repo
+        content: |
+          [kubernetes]
+          name=Kubernetes
+          baseurl=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/repodata/repomd.xml.key
+          exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
+
+    - name: Install Kubernetes components
+      shell: |
+        dnf makecache
+        dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+    - name: Enable kubelet
+      systemd:
+        name: kubelet
+        enabled: yes
+        state: started
+
+    - name: Join the Kubernetes cluster
+      shell: kubeadm join 172.22.153.61:6443 --token 7bxiqw.5yhm8oshde91dde7 --discovery-token-ca-cert-hash sha256:8535be410d9b8ecd68320e1d22fa6b040953e9e5dbcbb0cc25d5db03bf5ceab5 
+      args:
+        creates: /etc/kubernetes/kubelet.conf

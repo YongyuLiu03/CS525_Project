@@ -1,0 +1,25 @@
+- name: Ensure sch_netem is available on all nodes
+  hosts: new_workers
+  become: true
+  tasks:
+    - name: Install kernel-modules-extra
+      yum:
+        name: kernel-modules-extra
+        state: present
+
+    - name: Load sch_netem kernel module
+      command: modprobe sch_netem
+
+    - name: Verify sch_netem module is loaded
+      shell: lsmod | grep '^sch_netem'
+      register: lsmod_result
+      failed_when: lsmod_result.stdout == ""
+      changed_when: false
+
+    - name: Ensure sch_netem is loaded on boot
+      lineinfile:
+        path: /etc/modules-load.d/kubernetes.conf
+        line: sch_netem
+        create: yes
+        state: present
+        
