@@ -1,0 +1,208 @@
+{
+    "apiVersion": "scheduling.mygroup.io/v1",
+    "kind": "AppGroup",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"scheduling.mygroup.io/v1\",\"kind\":\"AppGroup\",\"metadata\":{\"annotations\":{},\"name\":\"boutique\"},\"spec\":{\"workloads\":[{\"dependencies\":[{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.6,\"lossrate\":0.1},\"name\":\"recommendationservice\"},{\"metrics\":{\"bandwidth\":0.2,\"latency\":0.7,\"lossrate\":0.1},\"name\":\"productcatalogservice\"},{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.6,\"lossrate\":0.1},\"name\":\"checkoutservice\"},{\"metrics\":{\"bandwidth\":0.4,\"latency\":0.4,\"lossrate\":0.2},\"name\":\"currencyservice\"},{\"metrics\":{\"bandwidth\":0.4,\"latency\":0.5,\"lossrate\":0.1},\"name\":\"cartservice\"},{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.4,\"lossrate\":0.3},\"name\":\"shippingservice\"},{\"metrics\":{\"bandwidth\":0.2,\"latency\":0.7,\"lossrate\":0.1},\"name\":\"adservice\"}],\"name\":\"frontend\",\"selector\":\"app=frontend\",\"weight\":1},{\"dependencies\":[{\"metrics\":{\"bandwidth\":0.2,\"latency\":0.7,\"lossrate\":0.1},\"name\":\"productcatalogservice\"}],\"name\":\"recommendationservice\",\"selector\":\"app=recommendationservice\",\"weight\":0.8},{\"dependencies\":[{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.4,\"lossrate\":0.3},\"name\":\"paymentservice\"},{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.4,\"lossrate\":0.3},\"name\":\"emailservice\"},{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.5,\"lossrate\":0.2},\"name\":\"shippingservice\"},{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.4,\"lossrate\":0.2},\"name\":\"currencyservice\"},{\"metrics\":{\"bandwidth\":0.3,\"latency\":0.4,\"lossrate\":0.2},\"name\":\"cartservice\"},{\"metrics\":{\"bandwidth\":0.2,\"latency\":0.7,\"lossrate\":0.1},\"name\":\"productcatalogservice\"}],\"name\":\"checkoutservice\",\"selector\":\"app=checkoutservice\",\"weight\":0.9},{\"dependencies\":[{\"metrics\":{\"bandwidth\":0.4,\"latency\":0.5,\"lossrate\":0.1},\"name\":\"redis-cart\"}],\"name\":\"cartservice\",\"selector\":\"app=cartservice\",\"weight\":0.8},{\"dependencies\":[],\"name\":\"adservice\",\"selector\":\"app=adservice\",\"weight\":0.4},{\"dependencies\":[],\"name\":\"productcatalogservice\",\"selector\":\"app=productcatalogservice\",\"weight\":0.6},{\"dependencies\":[],\"name\":\"currencyservice\",\"selector\":\"app=currencyservice\",\"weight\":0.8},{\"dependencies\":[],\"name\":\"paymentservice\",\"selector\":\"app=paymentservice\",\"weight\":0.8},{\"dependencies\":[],\"name\":\"shippingservice\",\"selector\":\"app=shippingservice\",\"weight\":0.8},{\"dependencies\":[],\"name\":\"emailservice\",\"selector\":\"app=emailservice\",\"weight\":0.7},{\"dependencies\":[],\"name\":\"redis-cart\",\"selector\":\"app=redis-cart\",\"weight\":0.7}]}}\n"
+        },
+        "creationTimestamp": "2025-05-11T02:15:06Z",
+        "generation": 4,
+        "name": "boutique",
+        "resourceVersion": "1514923",
+        "uid": "d077d22c-6d28-4aad-bcfc-b448783ec624"
+    },
+    "spec": {
+        "workloads": [
+            {
+                "dependencies": [
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.6,
+                            "lossrate": 0.1
+                        },
+                        "name": "recommendationservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.2,
+                            "latency": 0.7,
+                            "lossrate": 0.1
+                        },
+                        "name": "productcatalogservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.6,
+                            "lossrate": 0.1
+                        },
+                        "name": "checkoutservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.4,
+                            "latency": 0.4,
+                            "lossrate": 0.2
+                        },
+                        "name": "currencyservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.4,
+                            "latency": 0.5,
+                            "lossrate": 0.1
+                        },
+                        "name": "cartservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.4,
+                            "lossrate": 0.3
+                        },
+                        "name": "shippingservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.2,
+                            "latency": 0.7,
+                            "lossrate": 0.1
+                        },
+                        "name": "adservice"
+                    }
+                ],
+                "name": "frontend",
+                "selector": "app=frontend",
+                "weight": 1
+            },
+            {
+                "dependencies": [
+                    {
+                        "metrics": {
+                            "bandwidth": 0.2,
+                            "latency": 0.7,
+                            "lossrate": 0.1
+                        },
+                        "name": "productcatalogservice"
+                    }
+                ],
+                "name": "recommendationservice",
+                "selector": "app=recommendationservice",
+                "weight": 0.8
+            },
+            {
+                "dependencies": [
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.4,
+                            "lossrate": 0.3
+                        },
+                        "name": "paymentservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.4,
+                            "lossrate": 0.3
+                        },
+                        "name": "emailservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.5,
+                            "lossrate": 0.2
+                        },
+                        "name": "shippingservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.4,
+                            "lossrate": 0.2
+                        },
+                        "name": "currencyservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.3,
+                            "latency": 0.4,
+                            "lossrate": 0.2
+                        },
+                        "name": "cartservice"
+                    },
+                    {
+                        "metrics": {
+                            "bandwidth": 0.2,
+                            "latency": 0.7,
+                            "lossrate": 0.1
+                        },
+                        "name": "productcatalogservice"
+                    }
+                ],
+                "name": "checkoutservice",
+                "selector": "app=checkoutservice",
+                "weight": 0.9
+            },
+            {
+                "dependencies": [
+                    {
+                        "metrics": {
+                            "bandwidth": 0.4,
+                            "latency": 0.5,
+                            "lossrate": 0.1
+                        },
+                        "name": "redis-cart"
+                    }
+                ],
+                "name": "cartservice",
+                "selector": "app=cartservice",
+                "weight": 0.8
+            },
+            {
+                "dependencies": [],
+                "name": "adservice",
+                "selector": "app=adservice",
+                "weight": 0.4
+            },
+            {
+                "dependencies": [],
+                "name": "productcatalogservice",
+                "selector": "app=productcatalogservice",
+                "weight": 0.6
+            },
+            {
+                "dependencies": [],
+                "name": "currencyservice",
+                "selector": "app=currencyservice",
+                "weight": 0.8
+            },
+            {
+                "dependencies": [],
+                "name": "paymentservice",
+                "selector": "app=paymentservice",
+                "weight": 0.8
+            },
+            {
+                "dependencies": [],
+                "name": "shippingservice",
+                "selector": "app=shippingservice",
+                "weight": 0.8
+            },
+            {
+                "dependencies": [],
+                "name": "emailservice",
+                "selector": "app=emailservice",
+                "weight": 0.7
+            },
+            {
+                "dependencies": [],
+                "name": "redis-cart",
+                "selector": "app=redis-cart",
+                "weight": 0.7
+            }
+        ]
+    }
+}

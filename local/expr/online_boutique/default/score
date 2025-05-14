@@ -1,0 +1,21 @@
+Total Score: 1600.900
+Average Score per App: 64.293
+
+Per-app Score (with reverse):
+frontend            : 464.412
+checkoutservice     : 383.239
+productcatalogservice: 158.464
+recommendationservice: 157.886
+shippingservice     : 135.784
+cartservice         : 82.933
+paymentservice      : 77.070
+currencyservice     : 51.834
+emailservice        : 38.888
+adservice           : 26.235
+redis-cart          : 24.153
+
+Per-app Score (only forward):
+frontend            : 464.412
+checkoutservice     : 334.773
+recommendationservice: 79.063
+cartservice         : 25.871

@@ -1,0 +1,14 @@
+NAMESPACE,POD,SCHEDULING_LATENCY(s)
+default,auth-dep-59c79db458-2wrh4,0.000
+default,cart-dep-59b6c94ff4-dfhxz,0.000
+default,catalog-dep-7c7f795bb8-cmsd4,0.000
+default,catalog-dep-7c7f795bb8-nzt4x,0.000
+default,checkout-dep-56d6f55b7c-9vlr5,1.000
+default,checkout-dep-56d6f55b7c-ldjzk,0.000
+default,frontend-dep-865ccb9d5f-qtbv7,0.000
+default,frontend-dep-865ccb9d5f-rwnlb,0.000
+default,payment-dep-6f69567c6b-kvgtk,0.000
+default,recommend-dep-6dfb88d75-29htg,0.000
+default,search-dep-6ddbc7b458-52629,0.000
+default,search-dep-6ddbc7b458-gmxxw,0.000
+default,user-dep-7586899dbb-ssj5b,0.000

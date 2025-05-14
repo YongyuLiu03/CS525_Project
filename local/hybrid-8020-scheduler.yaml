@@ -1,0 +1,110 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hybrid-8020
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hybrid-8020-as-kube-scheduler
+subjects:
+- kind: ServiceAccount
+  name: hybrid-8020
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: system:kube-scheduler
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hybrid-8020-as-volume-scheduler
+subjects:
+- kind: ServiceAccount
+  name: hybrid-8020
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: system:volume-scheduler
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hybrid-8020-extension-apiserver-authentication-reader
+  namespace: kube-system
+roleRef:
+  kind: Role
+  name: extension-apiserver-authentication-reader
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: hybrid-8020
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hybrid-8020-config
+  namespace: kube-system
+data:
+  my-scheduler-config.yaml: "apiVersion: kubescheduler.config.k8s.io/v1\nkind: KubeSchedulerConfiguration\n\
+    profiles:\n- schedulerName: hybrid-8020\n  plugins:\n    score:\n      enabled:\n\
+    \      - name: NetworkAwareScore\n  pluginConfig:\n  - name: NetworkAwareScore\n\
+    \    args:\n          weight: 8\nleaderElection:\n  leaderElect: false\n"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: scheduler
+    tier: control-plane
+  name: hybrid-8020
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      component: scheduler
+      tier: control-plane
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: scheduler
+        tier: control-plane
+        version: v1
+    spec:
+      serviceAccountName: hybrid-8020
+      containers:
+      - name: kube-second-scheduler
+        image: yongyuliu03/custom-scheduler:v2
+        command:
+        - /kube-scheduler
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+          initialDelaySeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/kubernetes/my-scheduler
+        args:
+        - --config=/etc/kubernetes/my-scheduler/hybrid-8020-config.yaml
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ''
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      volumes:
+      - name: config-volume
+        configMap:
+          name: hybrid-8020-config

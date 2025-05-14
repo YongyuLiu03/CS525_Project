@@ -1,0 +1,29 @@
+master
+sp25-cs525-1401 172.22.153.61
+
+Zone A
+sp25-cs525-1402.cs.illinois.edu 172.22.155.41
+sp25-cs525-1403.cs.illinois.edu 172.22.151.21
+sp25-cs525-1404.cs.illinois.edu 172.22.153.62
+sp25-cs525-1405.cs.illinois.edu 172.22.155.42
+sp25-cs525-1406.cs.illinois.edu 172.22.151.22
+
+Zone B
+sp25-cs525-1407.cs.illinois.edu 172.22.153.63
+sp25-cs525-1408.cs.illinois.edu 172.22.155.43
+sp25-cs525-1409.cs.illinois.edu 172.22.151.23
+sp25-cs525-1410.cs.illinois.edu 172.22.153.64
+sp25-cs525-1411.cs.illinois.edu 172.22.155.44
+
+Zone C
+sp25-cs525-1412.cs.illinois.edu 172.22.151.24
+sp25-cs525-1413.cs.illinois.edu 172.22.153.65
+sp25-cs525-1414.cs.illinois.edu 172.22.155.45
+sp25-cs525-1415.cs.illinois.edu 172.22.151.25
+sp25-cs525-1416.cs.illinois.edu 172.22.153.66
+
+Zone FAR
+sp25-cs525-1417.cs.illinois.edu 172.22.155.46
+sp25-cs525-1418.cs.illinois.edu 172.22.151.26
+sp25-cs525-1419.cs.illinois.edu 172.22.153.67
+sp25-cs525-1420.cs.illinois.edu 172.22.155.47
